@@ -4,27 +4,23 @@ A template project is created in a temporary directory, and the role's test
 suite is run using molecule in a virtualenv environment.
 
 """
+from cookiecutter.main import cookiecutter
 from json import load
 from os import chdir
-from os import environ
-from os.path import pathsep
 from pathlib import Path
 from shlex import split
 from subprocess import check_call
 from tempfile import TemporaryDirectory
 from venv import create
 
-from cookiecutter.main import cookiecutter
 
-
-def main():
+def main() -> int:
     """ Execute the test.
     
     """
     def pymod(command: str):
         """ Run a Python module inside the virtual environment. """
-        path = pathsep.join([str(venv.joinpath("bin")), environ["PATH"]])
-        check_call(split(f"python -m {command:s}"), env={"PATH": path})
+        check_call(split(f"python -m {command:s}"))
         return
 
     template = Path(__file__).resolve().parents[1]
@@ -43,4 +39,4 @@ def main():
 # Make the script executable.
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    exit(main())

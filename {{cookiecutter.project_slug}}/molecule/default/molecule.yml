@@ -1,19 +1,18 @@
 ---
 driver:
   name: docker
-lint:
-  name: yamllint
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+  flake8 --exclude=.venv/
 platforms:
   - name: Bionic
     image: ubuntu:18.04
 provisioner:
   name: ansible
-  lint:
-    name: ansible-lint
 verifier:
   name: testinfra
-  lint:
-    name: flake8
 scenario:
   test_sequence:
     - dependency

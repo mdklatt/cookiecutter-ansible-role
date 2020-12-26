@@ -1,5 +1,6 @@
 ---
 galaxy_info:
+  role_name: {{ cookiecutter.role_name }}
   author: {{ cookiecutter.author_name }}
   description: Template Ansible role
   version: {{ cookiecutter.project_version }}
